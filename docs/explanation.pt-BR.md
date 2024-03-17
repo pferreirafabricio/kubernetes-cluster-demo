@@ -43,7 +43,7 @@ Container para:
 
 APP -> SO Convidado -> Hypervisor -> SO Hospedeiro
 
-> Hypervisor normalmente é o próprio S.O
+> Hypervisor normalmente é o próprio S.O, é quem gerencia as máquinas virtuais
 
 VM para:
 
@@ -123,6 +123,8 @@ Roda vários Pod, cada Pod pode ter vários containers
 
 #### Armazenamento persistente
 
+Banco do kubernetes
+
 #### Container Registry
 
 ## Minikube
@@ -136,3 +138,32 @@ minikube status
 minikube ssh (entra dentro do shell do minikube)
 minikube dashboard (abre a dash do kubernetes)
 minikube addons
+
+## kubectl
+
+> kube control
+
+Comando padrão de interação com a API Rest fo Kubernetes
+
+> Dica: parâmetros entre colchetes é um parâmetro opcional já entre chaves é obrigatório
+
+> ex: kubectl <command> [options]
+> <command> = obrigatório
+> [options] = opcional
+
+### syntax
+
+`kubectl <verbo> <tipo> [nome]`
+
+- verbo = get, delete, add etc.
+- tipo = pod, deploy, config map etc.
+
+> ex: `kubectl get nodes`
+
+## Pod
+
+É a menor unidade de aplicação do k8s.
+Pod em tradução direta é um conjunto de baleias ou cápsula/casulo.
+Dentro do pod está o container.
+Só consegue subir uma aplicação se tiver uma imagem.
+
