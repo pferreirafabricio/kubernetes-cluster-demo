@@ -17,14 +17,14 @@
 
 The [pod-apache.yml](./pod-apache.yml) and [pod-mysql.yml](./pod-mysql.yml) files are Kubernetes Pod configurations for Apache and MySQL servers respectively. These files define the containers to run within the pods, including the Docker images to use and the names of the containers.
 
-> [Warning]
+> [!WARNING]
 > The file [pod-mysql.yml](./pod-mysql.yml) is broken on purpose and doesn't provide any `env` configuration for MySQL.
 
 The [deploy-mysql.yml](./deploy-mysql.yml) file contains the configuration for a Kubernetes Deployment of a MySQL server. It specifies the Docker image to use, and sets up labels and selectors for managing the pods.
 
 The [docs/explanation.pt-BR.md](./docs/explanation.pt-BR.md) file provides a comprehensive explanation of Kubernetes, containers, and the differences between containers and virtualization. It also covers the architecture of Kubernetes, including the Control Plane and Compute Nodes, and explains the roles of various components such as the kube-apiserver, kube-scheduler, kube-controller-manager, and etcd. The document also introduces Minikube, a tool for running Kubernetes locally, and kubectl, the standard command-line tool for interacting with Kubernetes.
 
-> [Info]
+> [!NOTE]
 > This project is a resource for me to help me understand Kubernetes and its use in deploying and managing containerized applications.
 
 ## :bricks: References
