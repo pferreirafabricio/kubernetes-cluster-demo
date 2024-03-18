@@ -1,0 +1,22 @@
+# Agora mudou a "caixa"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    # Os labels são marcações arbitrárias que colocamos em qualquer objeto do k8s
+    # para facilitar sua identificação
+    matchLabels:
+      app: mysql
+  # O ReplicaSet fica "embutido" dentro do template
+  template:
+    metadata:
+      # é o label declarado no "matchLabels"
+      labels:
+        app: mysql
+    spec:
+      # Aqui abaixo ficam os Pods em si
+      containers:
+      - name: mysql
+        image: docker.io/mysql:8.3

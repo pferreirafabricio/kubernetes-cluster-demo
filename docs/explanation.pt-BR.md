@@ -57,7 +57,7 @@ VM para:
 Orquestração de containers
 
 > Cluster é um aglomerado, um cluster computacional é um conjunto de máquinas que agem como se fosse "uma coisa só"
-
+>
 > Derivado de um projeto chamado Borg do Google, doado para a CNCF.
 
 ### Orquestrador
@@ -147,9 +147,9 @@ Comando padrão de interação com a API Rest fo Kubernetes
 
 > Dica: parâmetros entre colchetes é um parâmetro opcional já entre chaves é obrigatório
 
-> ex: kubectl <command> [options]
-> <command> = obrigatório
-> [options] = opcional
+> ex: `kubectl <command> [options]`
+> `<command>` = obrigatório
+> `[options]` = opcional
 
 ### syntax
 
@@ -212,3 +212,76 @@ edita o pod com o nome "apache"
 > `minikube ssh` = entra no shell do minikube
 > `curl -I 10.244.0.3` = consulta o header do servidor apache
 > `while true; do curl -I 10.244.0.3; sleep 1; done`
+
+#### Investigando
+
+Podemos utilizar o `describe` e/ou `logs`
+
+##### Status CrashLoopBackOff
+
+O pod fica num estado em que está sendo reiniciado, porém o kubernetes entende que não está chegando a lugar algum
+
+Cada imagem tem suas características, portanto é necessário ir atrás da própria doc do container. (ex: [mysql image](https://hub.docker.com/_/mysql))
+
+### Alterações
+
+Não é possível alterar a maioria das propriedades dos Pods.
+Para isso precismaos de objetos de mais alto nível, como `Deployment` e `Replicaset`
+
+> Pod é mais útil para realizar testes, no geral não trabalharemos diretamente com ele
+>
+> Exemplo de tentar editar um pod:
+> pods "mysql" was not valid:
+>
+> - spec: Forbidden: pod updates may not change fields other than
+
+## Deployment
+
+É uma forma de prover atualizações declarativas para Pods e ReplicaSets
+
+Um ReplicaSet mantém um número estável de réplicas de um Pod
+
+Deployment -> ReplicaSets -> Pods
+
+O Deployment atualiza o ReplicaSet que por sua vez atualiza os Pods.
+
+> Não é recomendado utilizar ReplicaSets sozinhos
+> Podemos criar o deploy direto pela CLI: `kubectl create deploy mysql --image docker.io/mysql:8.3`
+
+### Labels
+
+Os labels são marcações arbitrárias que colocamos em qualquer objeto do k8s  para facilitar sua identificação
+
+### Nomes
+
+- `kubectl get pod`
+
+> retorna o name: mysql-67d448cc69-czkvv, onde `mysql-67d448cc69` é o name do ReplicaSet e `czkvv` o nome do container
+
+## Recuperação automática
+
+Self-healing é uma capacidade do kubernetes de manter uma aplicação funcionando.
+
+## Balanceamento de carga
+
+Load balacing é a capacidade do k8s de balancear as requisições entre diferentes pods, evitando sobrecarga da aplicação.
+
+## Réplicas
+
+São cópias de um mesmo Pod, normalmente em máquinas diferentes.
+Ex: Um Pod com 3 réplicas indica que existem 3 pods iguais ao analisado espalhado pelo cluster
+
+`kubectl scale deploy <nome do deploy> --replicas=3`
+
+> Dica: no k8s sempre trabalhamos com nome de serviço ou IP de serviço, nunca com IPs de pod
+
+## Serviços
+
+Um service é uma forma de expor aplicações na rede que estão rodando em um ou mais Pods dentro do cluster.
+
+> O serviço aglomera uma série de pods em um único ponto de rede
+
+Podemos criar por arquivo com o `kind: Service`
+Ou pela CLI: `kubectl expose deploy/cgi`
+
+Ex de teste: while true; do curl <ip_do_service>:8080; sleep 1; done
