@@ -197,6 +197,7 @@ edita o pod com o nome "apache"
 #### `kubectl exec -ti apache -- sh`
 >
 > entra dentro do Pod, -t = tty e -i = interactive
+> o `--` indica que não haverá mais nenhum parâmetro somente argumentos
 
 #### `kubectl describe pod apache`
 >
@@ -234,6 +235,14 @@ Para isso precismaos de objetos de mais alto nível, como `Deployment` e `Replic
 > pods "mysql" was not valid:
 >
 > - spec: Forbidden: pod updates may not change fields other than
+
+### Pod com + de 1 container
+
+Os pods podem ter 1 ou mais containers dentro de si.
+Os containers compartilham rede e volumes.
+Dentro do pod se comunicam através de localhost.
+
+> é bom pra migrar sistemas legados
 
 ## Deployment
 
