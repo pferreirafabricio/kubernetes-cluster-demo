@@ -1,4 +1,4 @@
-# Kubernetes
+# 🐳 Kubernetes
 
 ## Container
 
@@ -145,7 +145,8 @@ minikube addons
 
 Comando padrão de interação com a API Rest fo Kubernetes
 
-> Dica: parâmetros entre colchetes é um parâmetro opcional já entre chaves é obrigatório
+> [!NOTE]
+> parâmetros entre colchetes é um parâmetro opcional já entre chaves é obrigatório
 
 > ex: `kubectl <command> [options]`
 > `<command>` = obrigatório
@@ -197,6 +198,7 @@ edita o pod com o nome "apache"
 #### `kubectl exec -ti apache -- sh`
 >
 > entra dentro do Pod, -t = tty e -i = interactive
+>
 > o `--` indica que não haverá mais nenhum parâmetro somente argumentos
 
 #### `kubectl describe pod apache`
@@ -210,8 +212,11 @@ edita o pod com o nome "apache"
 #### Testando
 
 > `kubectl get pod -o wide` = pega o IP
+>
 > `minikube ssh` = entra no shell do minikube
+>
 > `curl -I 10.244.0.3` = consulta o header do servidor apache
+>
 > `while true; do curl -I 10.244.0.3; sleep 1; done`
 
 #### Investigando
@@ -265,7 +270,7 @@ Os labels são marcações arbitrárias que colocamos em qualquer objeto do k8s 
 
 - `kubectl get pod`
 
-> retorna o name: mysql-67d448cc69-czkvv, onde `mysql-67d448cc69` é o name do ReplicaSet e `czkvv` o nome do container
+> retorna o name: `mysql-67d448cc69-czkvv`, onde `mysql-67d448cc69` é o name do ReplicaSet e `czkvv` o nome do container
 
 ## Recuperação automática
 
@@ -282,7 +287,8 @@ Ex: Um Pod com 3 réplicas indica que existem 3 pods iguais ao analisado espalha
 
 `kubectl scale deploy <nome do deploy> --replicas=3`
 
-> Dica: no k8s sempre trabalhamos com nome de serviço ou IP de serviço, nunca com IPs de pod
+> [!NOTE]
+> no k8s sempre trabalhamos com nome de serviço ou IP de serviço, nunca com IPs de pod
 
 ## Serviços
 
