@@ -27,7 +27,12 @@ The [docs/explanation.pt-BR.md](./docs/explanation.pt-BR.md) file provides a com
 > [!NOTE]
 > This project is a resource for me to help me understand Kubernetes and its use in deploying and managing containerized applications.
 
-## :bricks: References
+## :bricks: This project was built with
+
+- [minikube](https://minikube.sigs.k8s.io/docs/)
+- [wsl](https://learn.microsoft.com/en-us/windows/wsl/about)
+
+## 📚 Learn more
 
 - [Kubernetes Para Quem Não Entende Nada - Aula 00](https://www.youtube.com/watch?v=2kZRM-KHK0k)
 - [Kubernetes Para Quem Não Entende Nada - Aula 01](https://www.youtube.com/watch?v=XLHtP-27q-o)
