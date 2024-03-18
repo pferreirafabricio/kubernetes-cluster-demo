@@ -167,3 +167,48 @@ Pod em tradução direta é um conjunto de baleias ou cápsula/casulo.
 Dentro do pod está o container.
 Só consegue subir uma aplicação se tiver uma imagem.
 
+> Um container só fica em "pé" porque o comando principal dele está rodando, se ele morrer, o container morre
+
+### Operando
+
+#### `kubectl create -f pod.yml`
+
+#### `kubectl get pod`
+
+#### `kubectl get pod -o yaml` ou `kubectl get pod -o wide`
+
+-o = output, ou seja, retorna o yaml com mais alguns metadados
+-o wide, mostra mais detalhes do Pod, o IP que é retorna só é visto dentro do cluster, não é externo
+
+#### `kubectl edit pod apache`
+
+edita o pod com o nome "apache"
+
+- `imagePullPolicy: IfNotPresent` só baixa a imagem se ela ainda não existir no minikube
+
+- `imagePullPolicy: Always` força o k8s sempre a baixar a imagem
+
+- `dnsPolicy: ClusterFirst` aonde o pod vai buscar o DNS, nesse caso vai procurar dentro do cluster
+
+- `restartPolicy: Always` se o processo morrer ou for parado de propósitio, será sempre reiniciado
+
+- `terminationGracePeriodSeconds: 30` quando tempo o k8s vai esperar o pod morrer, se passar desse tempo ele será excluído automaticamente
+
+#### `kubectl exec -ti apache -- sh`
+>
+> entra dentro do Pod, -t = tty e -i = interactive
+
+#### `kubectl describe pod apache`
+>
+> comando para analisar o pod, sendo a aba de "Events" a principal
+
+#### `kubectl logs apache`
+>
+> logs do container
+
+#### Testando
+
+> `kubectl get pod -o wide` = pega o IP
+> `minikube ssh` = entra no shell do minikube
+> `curl -I 10.244.0.3` = consulta o header do servidor apache
+> `while true; do curl -I 10.244.0.3; sleep 1; done`

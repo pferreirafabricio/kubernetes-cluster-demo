@@ -1,0 +1,16 @@
+# No k8s descrevemos o yml de forma DECLARATIVA
+# a v1 seria uma "caixa" com todos os itens básicos do k8s
+apiVersion: v1
+# Tipo do objeto
+kind: Pod
+metadata:
+  # Nome do Pod
+  name: apache
+# Quase todos os objetos tem spec
+# São as especificações daquele objeto
+spec:
+  # Pode ser mais de um container
+  containers:
+  # Nome do container
+  - name: apache
+    image: docker.io/httpd:alpine
